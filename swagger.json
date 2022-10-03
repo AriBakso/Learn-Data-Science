@@ -1,0 +1,266 @@
+{
+    "openapi"   : "3.0.3",
+    "info"      :{
+        "title"         : "Text Cleansing",
+        "version"       : "1.0",
+        "description"   : "Clean tweet, make a better world",
+        "contact"       :{
+            "name"  : "Dean Wily",
+            "email" :"deanwily.tk3@gmail.com"
+        },
+        "license"       : {
+            "name"  : "APACHE 2.0",
+            "url"   : "https://www.apache.org/licenses/LICENSE-2.0"
+        }
+    },
+
+
+    "servers"   : [
+        {
+            "description"   : "Text Cleaning RESTful API",
+            "url"           : "/"
+        }
+    ],
+    "paths"      : {
+        "/"     : {
+            "get"               : {
+                "summary"       : "Welcome page",
+                "description"   : "Try this out!",
+                "responses"     : {
+                    "200"               : {
+                        "description"   : "Success"
+                    },
+                    "400"               : {
+                        "description"   : "Misunderstood"
+                    },
+                    "401"               : {
+                        "description"   : "Unauthorized" 
+                    },
+                    "404"               : {
+                        "description"   : "Not Found"
+                    },
+                    "500"               : {
+                        "description"   : "Server Error"
+                    }
+                }
+            }
+        },
+
+        "/data"     : {
+            "get"   : {
+                "summary"       : "Get all of data list",
+                "description"   : "Thousand of data list",
+                "responses"     : {
+                    "200"               : {
+                        "description"   : "Success"
+                    },
+                    "400"               : {
+                        "description"   : "Misunderstood"
+                    },
+                    "401"               : {
+                        "description"   : "Unauthorized" 
+                    },
+                    "404" : {
+                        "description"   : "Not Found"
+                    },
+                    "500" : {
+                        "description"   : "Server Error"
+                    }
+                }
+            },
+            "post"  : {
+                "summary"       : "Post text form",
+                "description"   : "Post text file to cleanse",
+                "requestBody"   : {
+                    "required"      : true,
+                    "content"       : {
+                        "multipart/form-data"   : {
+                            "schema"            : {
+                                "type"          : "object",
+                                "properties"    : {
+                                    "text"      : {
+                                        "type"  : "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses"     : {
+                    "200"               : {
+                        "description"   : "Success"
+                    },
+                    "400"               : {
+                        "description"   : "Misunderstood"
+                    },
+                    "401"               : {
+                        "description"   : "Unauthorized" 
+                    },
+                    "404"               : {
+                        "description"   : "Not Found"
+                    },
+                    "500"               : {
+                        "description"   : "Server Error"
+                    }
+                }
+            }
+        },
+        "/data/{id}" : {
+            "get" : {
+                "summary"       : "Get data by id",
+                "description"   : "Get data by id from database",
+                "parameters"    : [
+                    {
+                        "name"          :"id",
+                        "in"            :"path",
+                        "required"      :true,
+                        "description"   :"id",
+                        "schema"        :{
+                            "type"      :"integer"
+                        }
+                    }
+                ],
+                "responses"     : {
+                    "200"               : {
+                        "description"   : "Success"
+                    },
+                    "400"               : {
+                        "description"   : "Misunderstood"
+                    },
+                    "401"               : {
+                        "description"   : "Unauthorized" 
+                    },
+                    "404"               : {
+                        "description"   : "Not Found"
+                    },
+                    "500"               : {
+                        "description"   : "Server Error"
+                    }
+                }
+            },
+            "put" : {
+                "summary" : "Edit data yang ada",
+                "description" : "Edit data yang ada di dalam database",
+                "parameters" : [
+                    {
+                        "name" : "id",
+                        "in"   : "path",
+                        "required"  : true,
+                        "description"   : "id",
+                        "schema"        : {
+                            "type" : "integer"
+                        }
+                    }
+                ],
+                "requestBody" : {
+                    "required"  : true,
+                    "content"   : {
+                        "multipart/form-data"   : {
+                            "schema"    : {
+                                "type"  : "object",
+                                "properties"    : {
+                                    "text"  : {
+                                        "type"  : "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses"     : {
+                    "200"               : {
+                        "description"   : "Success"
+                    },
+                    "400"               : {
+                        "description"   : "Misunderstood"
+                    },
+                    "401"               : {
+                        "description"   : "Unauthorized" 
+                    },
+                    "404"               : {
+                        "description"   : "Not Found"
+                    },
+                    "500"               : {
+                        "description"   : "Server Error"
+                    }
+                }
+            },
+            "delete"    : {
+                "summary"       : "Delete existing data",
+                "description"   : "Delete existing data pada database",
+                "parameters"    : [
+                    {
+                        "name"          : "id",
+                        "in"            : "path",
+                        "required"      : true,
+                        "description"   : "id",
+                        "schema"        : {
+                            "type"      : "integer", 
+
+                        }
+                    }
+                ],
+                "responses"     : {
+                    "200"               : {
+                        "description"   : "Success"
+                    },
+                    "400"               : {
+                        "description"   : "Misunderstood"
+                    },
+                    "401"               : {
+                        "description"   : "Unauthorized" 
+                    },
+                    "404"               : {
+                        "description"   : "Not Found"
+                    },
+                    "500"               : {
+                        "description"   : "Server Error"
+                    }
+                }  
+            }
+        },
+        "/data/csv" : {
+            "post"  : {
+                "summary"       : "Post csv file",
+                "description"   : "Post csv file to cleanse",
+                "requestBody"   : {
+                    "required"  : true,
+                    "content"   : {
+                        "multipart/form-data"   : {
+                            "schema"            : {
+                                "type"          : "object",
+                                "properties"    : {
+                                    "file"      : {
+                                        "type"  : "string",
+                                        "format"    : "based 64"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses"     : {
+                    "200"               : {
+                        "description"   : "Success"
+                    },
+                    "400"               : {
+                        "description"   : "Misunderstood"
+                    },
+                    "401"               : {
+                        "description"   : "Unauthorized" 
+                    },
+                    "404"               : {
+                        "description"   : "Not Found"
+                    },
+                    "500"               : {
+                        "description"   : "Server Error"
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+   
